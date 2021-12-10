@@ -1,21 +1,47 @@
-<script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + Vite" />
+  <div class="app">
+    <Header />
+    <div class="container">
+      <Sidebar />
+      <ChatDashboard />
+    </div>
+  </div>
 </template>
 
+<script>
+import Header from "./components/Header.vue";
+import Sidebar from "./components/Sidebar.vue";
+import ChatDashboard from "./components/ChatDashboard.vue";
+
+export default {
+  name: "App",
+  components: { Header, Sidebar, ChatDashboard },
+};
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+html {
+  font-size: 62.5%;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Roboto", sans-serif;
+  background: linear-gradient(to right, #ffafbd, #ffc3a0);
+  height: 100vh;
+}
+.app {
+  width: 90%;
+  margin: 10rem auto;
+  background-color: green;
+  height: 70rem;
+  color: white;
+}
+.container {
+  display: flex;
+  height: calc(100% - 5rem);
 }
 </style>
