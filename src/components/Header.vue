@@ -4,11 +4,8 @@
       <a class="navbar-brand" href="#">SoChat</a>
       <div class="search">
         <div class="icon"></div>
-        <div class="input">
-          
-        </div>
+        <div class="input"></div>
       </div>
-
     </nav>
   </div>
 </template>
@@ -16,7 +13,6 @@
 <script>
 const icon = document.querySelector('.icon');
 const search = document.querySelector('.search');
-
 export default {};
 </script>
 
@@ -46,10 +42,12 @@ export default {};
   padding-right: 30px;
   text-decoration: none;
   color: #000000;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
 }
 .search 
 {
-  /* display: flex; */
   position: relative;
   width: 360px;
   height: 35px;
@@ -58,7 +56,6 @@ export default {};
   transition: 0.5s;
   box-shadow: 0 0 0 1px whitesmoke;
 }
-
 .search .icon
 {
   position: absolute;
@@ -77,23 +74,21 @@ export default {};
 .search .icon::before
 {
   left: 10px;
-content: '';
-position: absolute;
-width: 10px;
-height: 10px;
-border: 1px solid gray;
-border-radius: 50%;
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 1px solid gray;
+  border-radius: 50%;
 }
 .search .icon::after
 {
   left: 15px;
-content: '';
-position: absolute;
-width: 1px;
-height: 5px;
-background: gray;
-transform: translate(6px,6px) rotate(315deg);
+  content: '';
+  position: absolute;
+  width: 1px;
+  height: 5px;
+  background: gray;
+  transform: translate(6px,6px) rotate(315deg);
 }
-
-
 </style>
