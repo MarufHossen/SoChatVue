@@ -8,7 +8,7 @@ export default {};
 
 <style>
 .sidebar {
-  background-color: black;
+  background-color: #3d4b67;
   flex: 2;
 }
 </style>

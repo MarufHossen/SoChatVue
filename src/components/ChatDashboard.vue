@@ -45,7 +45,7 @@ export default {
 
 <style>
 .chat-dashboard {
-  background-color: #e5e4e2;
+  background-color: #f5f6fa;
   flex: 10;
   padding: 3rem;
 }
