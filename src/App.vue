@@ -1,10 +1,10 @@
 <template>
   <div class="app">
     <Header />
-    <div class="container">
-      <Sidebar />
-      <ChatDashboard />
-    </div>
+      <div class="container">
+        <Sidebar />
+        <ChatDashboard />
+      </div>
   </div>
 </template>
 
@@ -21,7 +21,7 @@ export default {
 
 <style>
 html {
-  font-size: 62.5%;
+  font-size: 100%;
 }
 * {
   margin: 0;
@@ -34,9 +34,9 @@ body {
   height: 100vh;
 }
 .app {
-  width: 90%;
-  margin: 10rem auto;
-  background-color: green;
+  width: 100%;
+  margin: 0;
+  
   height: 70rem;
   color: white;
 }
