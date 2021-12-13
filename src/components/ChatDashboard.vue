@@ -61,6 +61,7 @@ export default {
   scrollbar-width: none;
 }
 .messages {
+  background-color: white;
   flex: 9;
   padding: 1rem;
 }
