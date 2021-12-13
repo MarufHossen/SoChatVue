@@ -30,15 +30,14 @@ html {
 }
 body {
   font-family: "Roboto", sans-serif;
-  background: linear-gradient(to right, #ffafbd, #ffc3a0);
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
 .app {
-  width: 90vw;
-  height: 80vh;
+  width: 100vw;
+  height: 100vh;
 }
 .container {
   display: flex;
