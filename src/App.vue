@@ -1,10 +1,10 @@
 <template>
   <div class="app">
     <Header />
-      <div class="container">
-        <Sidebar />
-        <ChatDashboard />
-      </div>
+    <div class="container">
+      <Sidebar />
+      <ChatDashboard />
+    </div>
   </div>
 </template>
 
@@ -21,7 +21,7 @@ export default {
 
 <style>
 html {
-  font-size: 100%;
+  font-size: 62.5%;
 }
 * {
   margin: 0;
@@ -31,14 +31,14 @@ html {
 body {
   font-family: "Roboto", sans-serif;
   background: linear-gradient(to right, #ffafbd, #ffc3a0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
 }
 .app {
-  width: 100%;
-  margin: 0;
-  
-  height: 70rem;
-  color: white;
+  width: 90vw;
+  height: 80vh;
 }
 .container {
   display: flex;
