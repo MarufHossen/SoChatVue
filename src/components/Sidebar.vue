@@ -1,5 +1,7 @@
 <template>
-  <div class="sidebar">Sidebar</div>
+  <div class="sidebar">
+    <router-link to="/signup">Sign up</router-link>
+  </div>
 </template>
 
 <script>
