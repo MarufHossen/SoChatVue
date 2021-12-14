@@ -6,15 +6,15 @@
 
       <div class="box">
         <form name="search">
-            <input type="text" class="input" name="txt" placeholder="Search.."
-            onmouseout="document.search.txt.value = ''">
+            <input type="text" class="input" name="txt" placeholder="Search..">
+
         </form>
           
     </div>
         
       
       <div class="profile-image">
-        <img class="img" src="src\assets\ahmed.jpg" href="#"/>
+        <img class="img" src="../assets/ahmed.jpg" href="#"/>
       </div>
 
     </nav>
