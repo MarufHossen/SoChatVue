@@ -1,107 +1,130 @@
 <template>
-    <div class="login">
-        <form>
-            <h1>SoChat</h1>
+<h1 class=" name">SoChat</h1>
+<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<div class="logo"></div>
+<div class="login-block">
+    <h1>Login</h1>
+	
+    <input type="text" value="" placeholder="Username" id="username" />
 
-            <label>Email :</label>
-            <input type="email" v-model="email" required />
+    <input type="password" value="" placeholder="Password" id="password" />
+    <button>Login</button>
+</div>
 
-            <label>Password :</label>
-            <input type="password" v-model="password" required />
-            <div v-if="passwordError" class="error">{{ passwordError }}</div>
-
-            <div class="button">
-               <router-link to="/">
-               <button class="login" type="login">Login </button>
-               </router-link> 
-            </div>
-        </form>
-    </div>
 </template>
 
 
 <script>
-export default {
+export default{
 
-
-
+    
+   
+   
 }
 </script>
 
 
-<style scoped>
-h1 {
-    font-family: "Courier New", Courier, monospace;
-    text-align: center;
-    font-size: 50px;
+<style scoped> 
+.name{
+	position: fixed;
+    bottom: 50%;
+    right: 80%;
+	font-size: 52px;
+	
 }
 
-form {
-    max-width: 600px;
-    margin: 40px auto;
-    background: rgb(184, 213, 233);
-    text-align: left;
+body {
+    background: url('http://i.imgur.com/Eor57Ae.jpg') no-repeat fixed center center;
+    background-size: cover;
+    font-family: Montserrat;
+}
+
+.logo {
+    width: 213px;
+    height: 36px;
+    background: url('http://i.imgur.com/fd8Lcso.png') no-repeat;
+    margin: 30px auto;
+}
+
+.login-block {
+    width: 320px;
     padding: 20px;
-    border-radius: 10px;
+    background: #fff;
+    border-radius: 5px;
+    border-top: 5px solid #ff656c;
+    margin: 0 auto;
+	position: fixed;
+    bottom: 25%;
+    left: 55%;
+	
 }
 
-label {
-    color: rgb(0, 0, 0);
-    display: inline-block;
-    margin: 50px 0 15px;
-    text-transform: uppercase;
-}
-
-input,
-select {
-    display: block;
-    padding: 10px 4px;
-    width: 100%;
-    box-sizing: bordre-box;
-    border: none;
-    border-bottom: 1px solid #ddd;
-    color: rgb(0, 0, 0);
-}
-
-input[type="checkbox"] {
-    display: inline-block;
-    width: 16px;
-    margin: 0 10px 0;
-    position: relative;
-    top: 2px;
-}
-
-.pill {
-    display: inline-block;
-    margin: 20px 10px 0 0;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    cursor: pointer;
-    background: rgb(0, 0, 0);
-}
-
-button {
-    background: rgb(7, 24, 7);
-    border: 0;
-    padding: 10px 20px;
-    color: white;
-    border-radius: 20px;
-    margin: auto;
-    display: block;
-    margin-top: 1rem;
-}
-
-.submit {
+.login-block h1 {
     text-align: center;
+    color: #000;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 20px;
 }
 
-.error {
-    color: #ff0000;
-    margin-top: 10px;
-    font-size: 0.8em;
-    font-weight: bold;
+.login-block input {
+    width: 100%;
+    height: 42px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-family: Montserrat;
+    padding: 0 20px 0 50px;
+    outline: none;
 }
+
+.login-block input#username {
+    background: #fff url('http://i.imgur.com/u0XmBmv.png') 20px top no-repeat;
+    background-size: 16px 80px;
+}
+
+.login-block input#username:focus {
+    background: #fff url('http://i.imgur.com/u0XmBmv.png') 20px bottom no-repeat;
+    background-size: 16px 80px;
+}
+
+.login-block input#password {
+    background: #fff url('http://i.imgur.com/Qf83FTt.png') 20px top no-repeat;
+    background-size: 16px 80px;
+}
+
+.login-block input#password:focus {
+    background: #fff url('http://i.imgur.com/Qf83FTt.png') 20px bottom no-repeat;
+    background-size: 16px 80px;
+}
+
+.login-block input:active, .login-block input:focus {
+    border: 1px solid #ff656c;
+}
+
+.login-block button {
+    width: 100%;
+    height: 40px;
+    background: #ff656c;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #e15960;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-family: Montserrat;
+    outline: none;
+    cursor: pointer;
+}
+
+.login-block button:hover {
+    background: #ff7b81;
+}
+
 </style>
 
 
