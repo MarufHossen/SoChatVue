@@ -1,5 +1,8 @@
 <template>
   <div class="sidebar">
+<<<<<<< HEAD
+    <router-link to="/signup">Sign up</router-link>
+=======
     <div class="menu-items">
             <router-link to="/" active-class="active" tag="button" exact class="side-btn">
                 <div class="link-container">
@@ -22,6 +25,7 @@
                 </div>
             </router-link>
         </div>
+>>>>>>> development
   </div>
 </template>
 
