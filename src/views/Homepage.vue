@@ -1,11 +1,6 @@
-
 <template>
-
-  
-  <div>
+  <div class="app">
     <Header />
-    
-    
     <div class="container">
       <Sidebar />
       <ChatDashboard />
@@ -17,7 +12,6 @@
 import Header from "../components/Header.vue";
 import Sidebar from "../components/Sidebar.vue";
 import ChatDashboard from "../components/ChatDashboard.vue";
-
 
 export default {
   name: "App",
