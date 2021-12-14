@@ -2,7 +2,7 @@
   <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand" href="#">SoChat</a>
     <div class="profile-image">
-      <img class="img" src="../src/assets/ahmed.jpg" href="#" />
+      <img class="img" src="../assets/ahmed.jpg" href="#" />
     </div>
   </nav>
 </template>
