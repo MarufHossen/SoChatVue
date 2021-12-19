@@ -1,9 +1,11 @@
 <template>
-  <div class="app">
+  <div class="analytics">
     <Header />
     <div class="container">
       <Sidebar />
-      <ChatDashboard />
+      <div class="stats">
+        <div class="overview"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -11,18 +13,12 @@
 <script>
 import Header from "../components/Header.vue";
 import Sidebar from "../components/Sidebar.vue";
-import ChatDashboard from "../components/ChatDashboard.vue";
-
 export default {
-  name: "App",
-  components: { Header, Sidebar, ChatDashboard },
+  components: { Header, Sidebar },
 };
 </script>
 
 <style>
-html {
-  font-size: 62.5%;
-}
 * {
   margin: 0;
   padding: 0;
@@ -32,15 +28,19 @@ body {
   font-family: "Roboto", sans-serif;
   height: 100vh;
 }
-.app {
+.analytics {
   width: 100%;
   height: 100vh;
 }
 .container {
+  width: 100%;
   display: flex;
   height: calc(100% - 5rem);
-  position: fixed;
-  top: 7rem;
-  overflow: scroll;
+}
+.stats {
+  flex: 10;
+  width: 100%;
+  padding: 3rem;
+  background-color: #f5f6fa;
 }
 </style>

@@ -1,17 +1,103 @@
 <template>
   <div class="sidebar">
-    <router-link to="/signup">Sign up</router-link>
+    <div class="sidebar-wrapper">
+      <div class="sidebarMenu">
+        <h3 class="sidebar-title">Dashboard</h3>
+        <hr />
+        <router-link to="/signup">
+          <div class="sidebar-link"><i class="fas fa-home icon"></i>Home</div>
+        </router-link>
+        <router-link to="/analytics">
+          <div class="sidebar-link">
+            <i class="fas fa-chart-line icon"></i>Analytics
+          </div>
+        </router-link>
+        <router-link to="/integration">
+          <div class="sidebar-link">
+            <i class="fas fa-wifi icon"></i>Integration
+          </div>
+        </router-link>
+
+        <router-link to="/signup">
+          <div class="sidebar-link"><i class="fas fa-rss icon"></i>Feeds</div>
+        </router-link>
+        <router-link to="/signup">
+          <div class="sidebar-link">
+            <i class="fas fa-mail-bulk icon"></i>Posts
+          </div>
+        </router-link>
+        <router-link to="/signup">
+          <div class="sidebar-link">
+            <i class="fas fa-cog icon"></i>Settings
+          </div>
+        </router-link>
+        <router-link to="/login">
+          <div class="sidebar-link" @click="logout">
+            <i class="fas fa-sign-out-alt icon"></i>logout
+          </div>
+        </router-link>
+      </div>
+      <div class="sidebarMenu">
+        <h3 class="sidebar-title">Notifications</h3>
+        <hr />
+        <router-link to="/signup">
+          <div class="sidebar-link">
+            <i class="fas fa-envelope icon"></i>Mail
+          </div>
+        </router-link>
+        <router-link to="/signup">
+          <div class="sidebar-link">
+            <i class="far fa-comment-dots icon"></i>Feedbacks
+          </div>
+        </router-link>
+        <router-link to="/">
+          <div class="sidebar-link">
+            <i class="fas fa-comment-alt icon"></i>Messages
+          </div>
+        </router-link>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    logout: () => {
+      localStorage.removeItem("user");
+      this.$forceUpdate();
+    },
+  },
+};
 </script>
 
 <style>
+* {
+  text-decoration: none;
+}
 .sidebar {
   background-color: white; /* #f5f6fa */
   flex: 2;
+  position: sticky;
+  top: 0;
+  padding: 2rem;
+}
+.sidebarMenu {
+  margin-top: 1rem;
+}
+.sidebar-title {
+  font-size: 1.6rem;
+  color: rgb(187, 186, 186);
+  margin-bottom: 1rem;
+}
+.sidebar-link {
+  padding: 1.2rem 0;
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: black;
+}
+.sidebar-link .icon {
+  margin-right: 1rem;
 }
 .menu-items {
   display: flex;

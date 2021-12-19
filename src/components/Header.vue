@@ -14,12 +14,15 @@ export default {};
 <style>
 .navbar {
   width: 100%;
-  max-height: 7rem;
+  height: 7rem;
   background-color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 0 0 2px whitesmoke;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 .navbar-brand {
   font-family: "Franklin Gothic Medium";
