@@ -1,6 +1,9 @@
 <template>
   <div class="sidebar">
-    <router-link to="/signup">Sign up</router-link>
+    <div class="menu-items">
+      <router-link to="/chatdashboard" class="chat">Chat Dashboard</router-link>
+    </div>
+    
   </div>
 </template>
 
@@ -9,19 +12,28 @@ export default {};
 </script>
 
 <style>
+.chat{
+  text-decoration: none;
+  color: #2f4f4f;
+}
 .sidebar {
   background-color: white; /* #f5f6fa */
   flex: 2;
+  display: flex;
+  font-style: none;
+  text-decoration: none;
+  color: #2f4f4f;
 }
 .menu-items {
   display: flex;
   flex-direction: column;
-  margin-top: 40px;
-  margin-left: 6px;
+  padding: 20px;
+  font-size: 1.6rem;
+  font-family: "Franklin Gothic Medium";
+  text-decoration: none;
+  color: #2f4f4f;
 }
-.menu-items > * {
-  margin-top: 60px;
-}
+
 .side-btn {
   border: none;
   padding: 16px 0px;
