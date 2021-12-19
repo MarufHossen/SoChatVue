@@ -1,5 +1,6 @@
 <template>
   <div class="sidebar">
+<<<<<<< HEAD
     <div class="sidebar-wrapper">
       <div class="sidebarMenu">
         <h3 class="sidebar-title">Dashboard</h3>
@@ -57,6 +58,12 @@
         </router-link>
       </div>
     </div>
+=======
+    <div class="menu-items">
+      <router-link to="/chatdashboard" class="chat">Chat Dashboard</router-link>
+    </div>
+    
+>>>>>>> 7ceaf0c51b6163ac368ea7f24cfb0c48a6ccb9ff
   </div>
 </template>
 
@@ -72,12 +79,19 @@ export default {
 </script>
 
 <style>
+<<<<<<< HEAD
 * {
   text-decoration: none;
+=======
+.chat{
+  text-decoration: none;
+  color: #2f4f4f;
+>>>>>>> 7ceaf0c51b6163ac368ea7f24cfb0c48a6ccb9ff
 }
 .sidebar {
   background-color: white; /* #f5f6fa */
   flex: 2;
+<<<<<<< HEAD
   position: sticky;
   top: 0;
   padding: 2rem;
@@ -98,16 +112,23 @@ export default {
 }
 .sidebar-link .icon {
   margin-right: 1rem;
+=======
+  display: flex;
+  font-style: none;
+  text-decoration: none;
+  color: #2f4f4f;
+>>>>>>> 7ceaf0c51b6163ac368ea7f24cfb0c48a6ccb9ff
 }
 .menu-items {
   display: flex;
   flex-direction: column;
-  margin-top: 40px;
-  margin-left: 6px;
+  padding: 20px;
+  font-size: 1.6rem;
+  font-family: "Franklin Gothic Medium";
+  text-decoration: none;
+  color: #2f4f4f;
 }
-.menu-items > * {
-  margin-top: 60px;
-}
+
 .side-btn {
   border: none;
   padding: 16px 0px;
