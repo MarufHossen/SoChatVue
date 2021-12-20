@@ -28,6 +28,52 @@
           <p class="heading-name">Jane Doe</p>
         </div>
         <div class="message-wrapper">
+          <!-- <div
+            class="message-box active-user"
+            v-for="(chat, index) in messagesList"
+            v-bind:key="index"
+          >
+            <div class="user-img-box active-user">
+              <img
+                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                alt=""
+                class="user-img"
+              />
+            </div>
+            <div class="message active-user">{{ chat.message }}</div>
+            <span class="time active-user">3.15PM</span>
+          </div> -->
+          <div
+            class="message-box active-user"
+            v-for="(chat, index) in messagesList"
+            v-bind:key="index"
+          >
+            <div class="user-mg-img-box active-user">
+              <img
+                src="https://images.unsplash.com/photo-1540569014015-19a7be504e3a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80"
+                alt=""
+                class="user-mg-img"
+              />
+            </div>
+            <div class="message active-user">
+              {{ chat.message }}
+            </div>
+            <span class="time active-user">3.15PM</span>
+          </div>
+          <!-- <div class="message-box active-user">
+            <div class="user-mg-img-box active-user">
+              <img
+                src="https://images.unsplash.com/photo-1540569014015-19a7be504e3a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80"
+                alt=""
+                class="user-mg-img"
+              />
+            </div>
+            <div class="message active-user">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit,
+              sequi.
+            </div>
+            <span class="time active-user">3.15PM</span>
+          </div>
           <div class="message-box">
             <div class="user-img-box">
               <img
@@ -59,51 +105,6 @@
             </div>
             <span class="time active-user">3.15PM</span>
           </div>
-          <div class="message-box active-user">
-            <div class="user-mg-img-box active-user">
-              <img
-                src="https://images.unsplash.com/photo-1540569014015-19a7be504e3a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80"
-                alt=""
-                class="user-mg-img"
-              />
-            </div>
-            <div class="message active-user">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit,
-              sequi.
-            </div>
-            <span class="time active-user">3.15PM</span>
-          </div>
-          <div class="message-box">
-            <div class="user-img-box">
-              <img
-                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                alt=""
-                class="user-img"
-              />
-            </div>
-            <div class="message">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit,
-              sequi.
-            </div>
-            <span class="time">3.15PM</span>
-          </div>
-          <div class="message-box active-user">
-            <div class="user-mg-img-box active-user">
-              <img
-                src="https://images.unsplash.com/photo-1540569014015-19a7be504e3a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80"
-                alt=""
-                class="user-mg-img"
-              />
-            </div>
-            <div class="message active-user">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Reiciendis nobis quod animi nulla maxime quia sunt mollitia
-              repellat. Error ea sed illum ab non assumenda incidunt ad fugit
-              cupiditate. Blanditiis nesciunt, omnis veritatis eos iusto at
-              voluptatem laudantium officiis modi.
-            </div>
-            <span class="time active-user">3.15PM</span>
-          </div>
           <div class="message-box">
             <div class="user-img-box">
               <img
@@ -131,11 +132,15 @@
               sequi.
             </div>
             <span class="time">3.15PM</span>
-          </div>
+          </div> -->
         </div>
         <div class="message-sendbox">
-          <input type="text" placeholder="Type a message" />
-          <button class="send">send</button>
+          <input
+            type="text"
+            placeholder="Type a message"
+            v-model="newMsgText"
+          />
+          <button @click="addNewMsg" class="send">send</button>
         </div>
       </div>
     </div>
@@ -144,11 +149,33 @@
 
 <script>
 import users from "./../userinfo";
+
+import { computed, ref } from "vue";
+
+let messagesList = ref([
+  { id: 1, message: "Hello", active: true },
+  { id: 2, message: "Hi", active: true },
+  { id: 3, message: "Good Morning", active: false },
+]);
+
 export default {
   data() {
     return {
+      activeClass: "active-user",
       users: users,
+      messagesList: messagesList,
     };
+  },
+  methods: {
+    addNewMsg() {
+      if (this.newMsgText) {
+        this.messagesList.push({
+          message: this.newMsgText,
+          active: false,
+        });
+        this.newMsgText = "";
+      }
+    },
   },
 };
 </script>
