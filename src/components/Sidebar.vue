@@ -102,13 +102,12 @@ export default {
 .menu-items {
   display: flex;
   flex-direction: column;
-  padding: 20px;
-  font-size: 1.6rem;
-  font-family: "Franklin Gothic Medium";
-  text-decoration: none;
-  color: #2f4f4f;
+  margin-top: 40px;
+  margin-left: 6px;
 }
-
+.menu-items > * {
+  margin-top: 60px;
+}
 .side-btn {
   border: none;
   padding: 16px 0px;
