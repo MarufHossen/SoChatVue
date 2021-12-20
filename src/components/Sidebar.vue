@@ -65,7 +65,7 @@ export default {
   methods: {
     logout: () => {
       localStorage.removeItem("user");
-      this.$forceUpdate();
+      window.location.href = "https://sochat-vue.herokuapp.com/login";
     },
   },
 };
