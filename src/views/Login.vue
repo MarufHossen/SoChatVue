@@ -21,7 +21,7 @@ export default {
   methods: {
     setUser() {
       localStorage.setItem("user", "true");
-      this.$router.push({ name: "home" });
+      window.location.href = "https://sochat-vue.herokuapp.com/";
     },
   },
 };
