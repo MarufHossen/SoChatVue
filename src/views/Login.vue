@@ -1,9 +1,22 @@
 <template>
-    <h1>Login</h1>
-    <p><input type="text" placeholder="Emain" v-model="email"/></p>
-    <p><input type="text" placeholder="Password" v-model="password"/></p>
+<div class="login-block">
+   <h1>Login</h1>
+    <p><input type="text" placeholder="Email" v-model="email"/></p>
+    <p><input type="password" placeholder="Password" v-model="password"/></p>
     <p v-if="errorMessage">{{ errorMessage }}</p>
     <p><button @click="login">Login</button></p>
+    
+    
+  
+
+
+</div>
+<div class="signup-btn">
+    <button @click="router.push('/signup')">Sign Up</button>
+</div>
+
+
+   
 </template>
 
 <script setup>
@@ -75,8 +88,27 @@ body {
   border-top: 5px solid #ff656c;
   margin: 0 auto;
   position: fixed;
-  bottom: 25%;
-  left: 55%;
+  bottom: 50%;
+  left: 40%;
+}
+.signup-btn {
+  cursor: pointer; 
+  width: 320px;
+  position: fixed;
+  height: 40px;
+  background: #ffffff;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px solid #e15960;
+  color: rgb(255, 52, 52);
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-family: Montserrat;
+  bottom: 45%;
+  left: 40%;
+  text-align: center;
+
 }
 
 .login-block h1 {
@@ -141,6 +173,9 @@ body {
   outline: none;
   cursor: pointer;
 }
+
+
+
 
 .login-block button:hover {
   background: #ff7b81;
