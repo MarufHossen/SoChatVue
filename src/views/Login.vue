@@ -1,26 +1,49 @@
 <template>
-  <h1 class="name">SoChat</h1>
-  <div class="logo"></div>
-  <div class="login-block">
     <h1>Login</h1>
-
-    <input type="text" value="" placeholder="Username" id="username" />
-
-    <input type="password" value="" placeholder="Password" id="password" />
-    <button @click="setUser">Login</button>
-  </div>
+    <p><input type="text" placeholder="Emain" v-model="email"/></p>
+    <p><input type="text" placeholder="Password" v-model="password"/></p>
+    <p v-if="errorMessage">{{ errorMessage }}</p>
+    <p><button @click="login">Login</button></p>
 </template>
 
-<script>
-export default {
-  methods: {
-    setUser() {
-      localStorage.setItem("user", "true");
-      window.location.href = "https://sochat-vue.herokuapp.com/";
-    },
-  },
+<script setup>
+import { ref } from "vue";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
+import { useRouter } from "vue-router";
+const email = ref("");
+const password = ref("");
+const errorMessage = ref();
+const router = useRouter();
+
+const login = () => {
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email.value, password.value)
+    .then((data)=> {
+        console.log("Successfully signed in");
+        console.log(auth.currentUser);
+        router.push('/')
+    })
+    .catch((error) => {
+        console.log(error.code);
+        switch(error.code){
+            case "auth/invalid-email":
+                errorMessage.value = "Invalid email";
+                break;
+            case "auth/user-not-found":
+                errorMessage.value = "No account with this email has been found";
+                break;
+            case "auth/invalid-password":
+                errorMessage.value = "Incorrect password";
+                break;
+            default: 
+                errorMessage.value = "Email or password was incorrect";
+                break;
+        }
+    });
 };
+
 </script>
+
 
 <style scoped>
 .name {
