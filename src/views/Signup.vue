@@ -1,10 +1,13 @@
 <template>
+<div class="login-block">
     <h1>Create An Account</h1>
     <p><input type="text" placeholder="First Name" v-model="firstname"/></p>
     <p><input type="text" placeholder="Last Name" v-model="lastname"/></p>
     <p><input type="text" placeholder="Emain" v-model="email"/></p>
     <p><input type="text" placeholder="Password" v-model="password"/></p>
     <p><button @click="signup">Submit</button></p>
+</div>
+    
 </template>
 
 <script setup>
