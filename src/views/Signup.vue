@@ -1,19 +1,34 @@
 <template>
-  <h1 class="name">SoChat</h1>
-  <div class="logo"></div>
-  <div class="login-block">
-    <h1>Sign Up</h1>
-    <input type="text" value="" placeholder="Fullname" id="Fullrname" />
-    <input type="text" value="" placeholder="Username" id="username" />
-
-    <input type="password" value="" placeholder="Password" id="password" />
-    <router-link to="/"></router-link>
-    <button>Sign</button>
-  </div>
+    <h1>Create An Account</h1>
+    <p><input type="text" placeholder="First Name" v-model="firstname"/></p>
+    <p><input type="text" placeholder="Last Name" v-model="lastname"/></p>
+    <p><input type="text" placeholder="Emain" v-model="email"/></p>
+    <p><input type="text" placeholder="Password" v-model="password"/></p>
+    <p><button @click="signup">Submit</button></p>
 </template>
 
-<script>
-export default {};
+<script setup>
+import { ref } from "vue";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
+import { useRouter } from "vue-router";
+const firstname = ref("");
+const lastname = ref("");
+const email = ref("");
+const password = ref("");
+const router = useRouter();
+
+const signup = () => {
+    createUserWithEmailAndPassword(getAuth(), email.value, password.value, firstname.value, lastname.value)
+    .then((data)=> {
+        console.log("Registration successful");
+        router.push('/')
+    })
+    .catch((error) => {
+        console.log(error.code);
+        alert(error.message);
+    });
+};
+
 </script>
 
 <style scoped>
