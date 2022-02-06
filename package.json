@@ -1,21 +1,19 @@
 {
-  "name": "sochat-vue",
+  "name": "spense",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "start": "node server.js"
+    "preview": "vite preview"
   },
   "dependencies": {
-    "express": "^4.17.1",
-    "router": "^1.3.6",
-    "serve-static": "^1.14.1",
-    "vue": "^3.2.23",
-    "vue-router": "^4.0.12"
+    "vue": "^3.2.25"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^1.10.2",
-    "vite": "^2.7.0"
+    "@vitejs/plugin-vue": "^2.0.0",
+    "autoprefixer": "^10.4.2",
+    "postcss": "^8.4.6",
+    "tailwindcss": "^3.0.18",
+    "vite": "^2.7.2"
   }
 }
