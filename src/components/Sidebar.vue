@@ -92,7 +92,7 @@
   padding-right: 10px;
   color: #515151;
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   font-size: 16px;
 }

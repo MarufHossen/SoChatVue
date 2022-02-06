@@ -26,7 +26,7 @@ const count = ref(0);
   height: 100vh;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 50px auto 50px;
+  grid-template-rows: 55px auto 50px;
   grid-template-areas:
     "sidebar sidebar header header header header header header header header header header"
     "sidebar sidebar main_content main_content main_content main_content main_content main_content main_content main_content main_content main_content"
