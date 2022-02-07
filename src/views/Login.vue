@@ -48,7 +48,7 @@ const login = async () => {
         errorMessage.value = "Incorrect password";
         break;
       default:
-        errorMessage.value = "Email or password was incorrect";
+        errorMessage.value = "Email or passwordd was incorrect";
         break;
     }
   }
