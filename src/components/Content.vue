@@ -101,13 +101,29 @@
                 <div class="chat-area flex-1 flex flex-col">
                   <div class="flex-3">
                     <h2 class="text-xl py-1 mb-8 border-b-2 border-gray-200">
-                      Chatting with <b>Mercedes Yemelyan</b>
+                      Chatting in <b>SoChat App</b>
                     </h2>
                   </div>
                   <div class="messages flex-1 overflow-auto">
-                    <div class="message mb-4 flex">
+                    <div
+                      v-for="chat in chats"
+                      :key="chat.id"
+                      class="message mb-4 flex"
+                      v-bind:class="
+                        chat.senderId === 'wzVZdBNMrg2OeqftwtLx'
+                          ? 'text-right'
+                          : ''
+                      "
+                    >
                       <div class="flex-2">
-                        <div class="w-12 h-12 relative">
+                        <div
+                          class="w-12 h-12 relative"
+                          v-bind:class="
+                            chat.senderId === 'wzVZdBNMrg2OeqftwtLx'
+                              ? 'hidden'
+                              : ''
+                          "
+                        >
                           <img
                             class="w-12 h-12 rounded-full mx-auto"
                             src="../assets/profile-image.png"
@@ -137,135 +153,18 @@
                             px-6
                             text-gray-700
                           "
-                        >
-                          <span
-                            >Hey there. We would like to invite you over to our
-                            office for a visit. How about it?</span
-                          >
-                        </div>
-                        <div class="pl-4">
-                          <small class="text-gray-500">15 April</small>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="message mb-4 flex">
-                      <div class="flex-2">
-                        <div class="w-12 h-12 relative">
-                          <img
-                            class="w-12 h-12 rounded-full mx-auto"
-                            src="../assets/profile-image.png"
-                            alt="chat-user"
-                          />
-                          <span
-                            class="
-                              absolute
-                              w-4
-                              h-4
-                              bg-gray-400
-                              rounded-full
-                              right-0
-                              bottom-0
-                              border-2 border-white
-                            "
-                          ></span>
-                        </div>
-                      </div>
-                      <div class="flex-1 px-2">
-                        <div
-                          class="
-                            inline-block
-                            bg-gray-300
-                            rounded-full
-                            p-2
-                            px-6
-                            text-gray-700
+                          v-bind:class="
+                            chat.senderId === 'wzVZdBNMrg2OeqftwtLx'
+                              ? 'bg-blue-600 text-white'
+                              : ''
                           "
                         >
-                          <span
-                            >All travel expenses are covered by us of course
-                            :D</span
-                          >
-                        </div>
-                        <div class="pl-4">
-                          <small class="text-gray-500">15 April</small>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="message me mb-4 flex text-right">
-                      <div class="flex-1 px-2">
-                        <div
-                          class="
-                            inline-block
-                            bg-blue-600
-                            rounded-full
-                            p-2
-                            px-6
-                            text-white
-                          "
-                        >
-                          <span>It's like a dream come true</span>
+                          <span>{{ chat.msgTxt }}</span>
                         </div>
                         <div class="pr-4">
-                          <small class="text-gray-500">15 April</small>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="message me mb-4 flex text-right">
-                      <div class="flex-1 px-2">
-                        <div
-                          class="
-                            inline-block
-                            bg-blue-600
-                            rounded-full
-                            p-2
-                            px-6
-                            text-white
-                          "
-                        >
-                          <span>I accept. Thank you very much.</span>
-                        </div>
-                        <div class="pr-4">
-                          <small class="text-gray-500">15 April</small>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="message mb-4 flex">
-                      <div class="flex-2">
-                        <div class="w-12 h-12 relative">
-                          <img
-                            class="w-12 h-12 rounded-full mx-auto"
-                            src="../assets/profile-image.png"
-                            alt="chat-user"
-                          />
-                          <span
-                            class="
-                              absolute
-                              w-4
-                              h-4
-                              bg-gray-400
-                              rounded-full
-                              right-0
-                              bottom-0
-                              border-2 border-white
-                            "
-                          ></span>
-                        </div>
-                      </div>
-                      <div class="flex-1 px-2">
-                        <div
-                          class="
-                            inline-block
-                            bg-gray-300
-                            rounded-full
-                            p-2
-                            px-6
-                            text-gray-700
-                          "
-                        >
-                          <span>You are welome. We will stay in touch.</span>
-                        </div>
-                        <div class="pl-4">
-                          <small class="text-gray-500">15 April</small>
+                          <small class="text-gray-500">{{
+                            chat.senderName
+                          }}</small>
                         </div>
                       </div>
                     </div>
@@ -306,6 +205,7 @@
                       </div>
                       <div class="flex-1">
                         <textarea
+                          v-model="newMsg"
                           name="message"
                           class="
                             w-full
@@ -406,20 +306,26 @@ let messagesList = ref([
   { id: 3, message: "Good Morning", active: false },
 ]);
 
+const newMsg = ref("");
 const users = ref([]);
+const chats = ref([]);
+
+const saveMessages = () => {};
 
 onMounted(() => {
-  const userRef = collection(db, "users");
-  const q = query(userRef, where("uid", "not-in", [auth.currentUser.uid]));
+  const userRef = collection(db, "publicchat");
+  const q = query(userRef);
 
   console.log(q);
   const unsub = onSnapshot(q, (querySnapshot) => {
-    users.value = querySnapshot.docs
-      .map((doc) => ({ id: doc.id, ...doc.data() }))
-      .reverse();
+    chats.value = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    users.value = chats.value;
     //console.log(this.users);
-    console.log(users);
-    console.log("hello");
+    console.log(chats.value);
+    console.log("public chat is working");
   });
   //return () => unsub();
 });
