@@ -1,72 +1,65 @@
 <template>
-<div>
-  <h1 class="header"> SoChat </h1>
-</div>
-<div class="login-block">
-    <p><input type="text" placeholder="Email" v-model="email"/></p>
-    <p><input type="password" placeholder="Password" v-model="password"/></p>
+  <div class="login-block">
+    <h1>Login</h1>
+    <p><input type="text" placeholder="Email" v-model="email" /></p>
+    <p><input type="text" placeholder="Password" v-model="password" /></p>
     <p v-if="errorMessage">{{ errorMessage }}</p>
-    <p ><button type="submit" @click="login">Log in</button></p>
-    <p class=" text"> Do not have an account? </p>
-    <h5 @click="router.push('/signup')"> Sign Up
-    
-    </h5>
-    
-    
-
-    
-</div>
-
-
-   
+    <p><button @click="login">Login</button></p>
+  </div>
+  <div class="signup-btn">
+    <button @click="router.push('/signup')">Sign Up</button>
+  </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
+import { auth, db } from "../main";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { updateDoc, doc } from "firebase/firestore";
 import { useRouter } from "vue-router";
 const email = ref("");
 const password = ref("");
 const errorMessage = ref();
 const router = useRouter();
 
-const login = () => {
-    const auth = getAuth();
-    signInWithEmailAndPassword(auth, email.value, password.value)
-    .then((data)=> {
-        console.log("Successfully signed in");
-        console.log(auth.currentUser);
-        router.push('/')
-    })
-    .catch((error) => {
-        console.log(error.code);
-        switch(error.code){
-            case "auth/invalid-email":
-                errorMessage.value = "Invalid email";
-                break;
-            case "auth/user-not-found":
-                errorMessage.value = "No account with this email has been found";
-                break;
-            case "auth/invalid-password":
-                errorMessage.value = "Incorrect password";
-                break;
-            default: 
-                errorMessage.value = "Email or password was incorrect";
-                break;
-        }
+const login = async () => {
+  try {
+    const data = await signInWithEmailAndPassword(
+      auth,
+      email.value,
+      password.value
+    );
+    await updateDoc(doc(db, "users", data.user.uid), {
+      isOnline: true,
     });
+    console.log("Successfully signed in");
+    router.push("/");
+  } catch (error) {
+    console.log(error.code);
+    console.log(email.value, password.value);
+    switch (error.code) {
+      case "auth/invalid-email":
+        errorMessage.value = "Invalid email";
+        break;
+      case "auth/user-not-found":
+        errorMessage.value = "No account with this email has been found";
+        break;
+      case "auth/invalid-password":
+        errorMessage.value = "Incorrect password";
+        break;
+      default:
+        errorMessage.value = "Email or passwordd was incorrect";
+        break;
+    }
+  }
 };
-
 </script>
 
-
 <style scoped>
-
-.header{
-  
+.header {
   font-family: Tahoma;
   font-size: 40px;
-  font-weight:bolder;
+  font-weight: bolder;
   margin-top: 30px;
   color: #ff656c;
 }
@@ -78,7 +71,6 @@ const login = () => {
 }
 
 body {
-
   background-size: cover;
   font-family: Montserrat;
 }
@@ -100,8 +92,10 @@ body {
   position: relative;
   margin-top: 50px;
 }
-.login-block button {
-  width: 100%;
+.signup-btn {
+  cursor: pointer;
+  width: 320px;
+  position: fixed;
   height: 40px;
   background: #ff656c;
   box-sizing: border-box;
@@ -112,29 +106,22 @@ body {
   text-transform: uppercase;
   font-size: 14px;
   font-family: Montserrat;
-  outline: none;
-  cursor: pointer;
+  bottom: 45%;
+  left: 40%;
+  text-align: center;
 }
 
-.login-block h5{
-  
+.login-block h5 {
   color: #ff656c;
   padding-top: 2%;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   text-align: center;
   font-weight: bolder;
-  
 }
-.login-block  .text{
+.login-block .text {
   padding-top: 3%;
   color: #000000;
-  
 }
-
-
-
-
-
 
 .login-block input {
   width: 100%;
@@ -173,11 +160,6 @@ body {
 .login-block input:focus {
   border: 1px solid #ff656c;
 }
-
-
-
-
-
 
 .login-block button:hover {
   background: #ff7b81;
