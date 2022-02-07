@@ -1,9 +1,9 @@
 <template>
   <div class="sidebar">
     <div class="logo">
-      <h1>So Chat</h1>
+      <h2 class="text-xl py-1 mb-8 border-b-2 border-gray-200">So Chat</h2>
     </div>
-    <div class="sidebar-menu">Chat</div>
+    <div class="sidebar-menu">Public Chat</div>
     <div class="sidebar-menu">Create Group</div>
     <div class="sidebar-menu">Join Group</div>
     <div class="sidebar-menu" @click="handleSignOut" v-if="isLoggedIn">

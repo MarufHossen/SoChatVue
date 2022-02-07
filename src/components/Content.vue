@@ -12,7 +12,7 @@
               </div>
 
               <div class="flex-1 flex h-full">
-                <div class="sidebar hidden lg:flex w-1/3 flex-2 flex-col pr-6">
+                <!-- <div class="sidebar hidden lg:flex w-1/3 flex-2 flex-col pr-6">
                   <div class="search flex-2 pb-6 px-2">
                     <input
                       type="text"
@@ -27,7 +27,7 @@
                       placeholder="Search"
                     />
                   </div>
-                  <div class="flex-1 h-full overflow-auto px-2">
+                  <div class="flex-1 h-full overflow-auto px-2 hidden">
                     <div
                       v-for="user in users"
                       :key="user.id"
@@ -97,7 +97,7 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> -->
                 <div class="chat-area flex-1 flex flex-col">
                   <div class="flex-3">
                     <h2 class="text-xl py-1 mb-8 border-b-2 border-gray-200">
@@ -244,6 +244,7 @@
                         </div>
                         <div class="flex-1">
                           <button
+                            @click="saveMessages"
                             class="
                               bg-blue-400
                               w-10
@@ -300,6 +301,8 @@ import { onMounted, computed, ref } from "vue";
 import { auth, db } from "../main";
 import { collection, query, where, onSnapshot } from "@firebase/firestore";
 
+import { doc, setDoc } from "firebase/firestore";
+
 let messagesList = ref([
   { id: 1, message: "Hello", active: true },
   { id: 2, message: "Hi", active: true },
@@ -309,8 +312,17 @@ let messagesList = ref([
 const newMsg = ref("");
 const users = ref([]);
 const chats = ref([]);
+const saveMessages = async () => {
+  const data = {
+    msgTxt: newMsg.value,
+    senderId: "wzVZdBNMrg2OeqftwtLx",
+    senderName: "Ahmed",
+  };
 
-const saveMessages = () => {};
+  console.log(data);
+  newMsg.value = "";
+  await setDoc(doc(collection(db, "publicchat")), data);
+};
 
 onMounted(() => {
   const userRef = collection(db, "publicchat");
@@ -322,6 +334,7 @@ onMounted(() => {
       id: doc.id,
       ...doc.data(),
     }));
+    // .reverse();
     users.value = chats.value;
     //console.log(this.users);
     console.log(chats.value);
