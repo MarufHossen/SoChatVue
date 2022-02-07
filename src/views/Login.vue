@@ -1,18 +1,20 @@
 <template>
+<div>
+  <h1 class="header"> SoChat </h1>
+</div>
 <div class="login-block">
-   <h1>Login</h1>
     <p><input type="text" placeholder="Email" v-model="email"/></p>
     <p><input type="password" placeholder="Password" v-model="password"/></p>
     <p v-if="errorMessage">{{ errorMessage }}</p>
-    <p><button @click="login">Login</button></p>
+    <p ><button type="submit" @click="login">Log in</button></p>
+    <p class=" text"> Do not have an account? </p>
+    <h5 @click="router.push('/signup')"> Sign Up
+    
+    </h5>
     
     
-  
 
-
-</div>
-<div class="signup-btn">
-    <button @click="router.push('/signup')">Sign Up</button>
+    
 </div>
 
 
@@ -59,6 +61,15 @@ const login = () => {
 
 
 <style scoped>
+
+.header{
+  
+  font-family: Tahoma;
+  font-size: 40px;
+  font-weight:bolder;
+  margin-top: 30px;
+  color: #ff656c;
+}
 .name {
   position: fixed;
   bottom: 50%;
@@ -67,8 +78,7 @@ const login = () => {
 }
 
 body {
-  background: url("http://i.imgur.com/Eor57Ae.jpg") no-repeat fixed center
-    center;
+
   background-size: cover;
   font-family: Montserrat;
 }
@@ -87,38 +97,44 @@ body {
   border-radius: 5px;
   border-top: 5px solid #ff656c;
   margin: 0 auto;
-  position: fixed;
-  bottom: 50%;
-  left: 40%;
+  position: relative;
+  margin-top: 50px;
 }
-.signup-btn {
-  cursor: pointer; 
-  width: 320px;
-  position: fixed;
+.login-block button {
+  width: 100%;
   height: 40px;
-  background: #ffffff;
+  background: #ff656c;
   box-sizing: border-box;
   border-radius: 5px;
   border: 1px solid #e15960;
-  color: rgb(255, 52, 52);
+  color: #fff;
   font-weight: bold;
   text-transform: uppercase;
   font-size: 14px;
   font-family: Montserrat;
-  bottom: 45%;
-  left: 40%;
-  text-align: center;
-
+  outline: none;
+  cursor: pointer;
 }
 
-.login-block h1 {
+.login-block h5{
+  
+  color: #ff656c;
+  padding-top: 2%;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   text-align: center;
-  color: #000;
-  font-size: 18px;
-  text-transform: uppercase;
-  margin-top: 0;
-  margin-bottom: 20px;
+  font-weight: bolder;
+  
 }
+.login-block  .text{
+  padding-top: 3%;
+  color: #000000;
+  
+}
+
+
+
+
+
 
 .login-block input {
   width: 100%;
@@ -158,21 +174,7 @@ body {
   border: 1px solid #ff656c;
 }
 
-.login-block button {
-  width: 100%;
-  height: 40px;
-  background: #ff656c;
-  box-sizing: border-box;
-  border-radius: 5px;
-  border: 1px solid #e15960;
-  color: #fff;
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 14px;
-  font-family: Montserrat;
-  outline: none;
-  cursor: pointer;
-}
+
 
 
 
