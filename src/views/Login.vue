@@ -1,62 +1,59 @@
 <template>
-<div class="login-block">
-   <h1>Login</h1>
-    <p><input type="text" placeholder="Email" v-model="email"/></p>
-    <p><input type="password" placeholder="Password" v-model="password"/></p>
+  <div class="login-block">
+    <h1>Login</h1>
+    <p><input type="text" placeholder="Email" v-model="email" /></p>
+    <p><input type="text" placeholder="Password" v-model="password" /></p>
     <p v-if="errorMessage">{{ errorMessage }}</p>
     <p><button @click="login">Login</button></p>
-    
-    
-  
-
-
-</div>
-<div class="signup-btn">
+  </div>
+  <div class="signup-btn">
     <button @click="router.push('/signup')">Sign Up</button>
-</div>
-
-
-   
+  </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
+import { auth, db } from "../main";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { updateDoc, doc } from "firebase/firestore";
 import { useRouter } from "vue-router";
 const email = ref("");
 const password = ref("");
 const errorMessage = ref();
 const router = useRouter();
 
-const login = () => {
-    const auth = getAuth();
-    signInWithEmailAndPassword(auth, email.value, password.value)
-    .then((data)=> {
-        console.log("Successfully signed in");
-        console.log(auth.currentUser);
-        router.push('/')
-    })
-    .catch((error) => {
-        console.log(error.code);
-        switch(error.code){
-            case "auth/invalid-email":
-                errorMessage.value = "Invalid email";
-                break;
-            case "auth/user-not-found":
-                errorMessage.value = "No account with this email has been found";
-                break;
-            case "auth/invalid-password":
-                errorMessage.value = "Incorrect password";
-                break;
-            default: 
-                errorMessage.value = "Email or password was incorrect";
-                break;
-        }
+const login = async () => {
+  try {
+    const data = await signInWithEmailAndPassword(
+      auth,
+      email.value,
+      password.value
+    );
+    await updateDoc(doc(db, "users", data.user.uid), {
+      isOnline: true,
     });
+    console.log("Successfully signed in");
+    router.push("/");
+  } catch (error) {
+    console.log(error.code);
+    console.log(email.value, password.value);
+    switch (error.code) {
+      case "auth/invalid-email":
+        errorMessage.value = "Invalid email";
+        break;
+      case "auth/user-not-found":
+        errorMessage.value = "No account with this email has been found";
+        break;
+      case "auth/invalid-password":
+        errorMessage.value = "Incorrect password";
+        break;
+      default:
+        errorMessage.value = "Email or password was incorrect";
+        break;
+    }
+  }
 };
-
 </script>
-
 
 <style scoped>
 .name {
@@ -92,7 +89,7 @@ body {
   left: 40%;
 }
 .signup-btn {
-  cursor: pointer; 
+  cursor: pointer;
   width: 320px;
   position: fixed;
   height: 40px;
@@ -108,7 +105,6 @@ body {
   bottom: 45%;
   left: 40%;
   text-align: center;
-
 }
 
 .login-block h1 {
@@ -173,9 +169,6 @@ body {
   outline: none;
   cursor: pointer;
 }
-
-
-
 
 .login-block button:hover {
   background: #ff7b81;
