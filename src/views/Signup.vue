@@ -28,7 +28,7 @@ const signup = () => {
     })
     .catch((error) => {
         console.log(error.code);
-        alert(error.message);
+        alert("Please provide valid inputs.");
     });
 };
 
