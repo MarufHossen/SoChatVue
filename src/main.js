@@ -3,7 +3,8 @@ import App from "./App.vue";
 import "./index.css";
 import router from "./router";
 import { initializeApp } from "firebase/app";
-
+import { getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 const firebaseConfig = {
   apiKey: "AIzaSyCsd2auDToUd0l0OLkwHJ6bQ9sPUioQAcE",
   authDomain: "so-chat-vue.firebaseapp.com",
