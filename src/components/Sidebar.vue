@@ -63,35 +63,42 @@
     <div class="sidebar-menu">Chat</div>
     <div class="sidebar-menu">Create Group</div>
     <div class="sidebar-menu">Join Group</div>
-    <div class="sidebar-menu" @click="handleSignOut" v-if="isLoggedIn">Signout</div>
+    <div class="sidebar-menu" @click="handleSignOut" v-if="isLoggedIn">
+      Signout
+    </div>
   </div>
 </template>
 
 <script setup>
-  import { onMounted, ref } from 'vue';
-  import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
-  import { useRouter } from 'vue-router';
+import { onMounted, ref } from "vue";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth, db } from "../main";
+import { useRouter } from "vue-router";
+import { updateDoc, doc } from "@firebase/firestore";
 
-  const router = useRouter();
-  const isLoggedIn = ref(false);
-
-  let auth;
-  onMounted(() => {
-    auth = getAuth();
-    onAuthStateChanged(auth, (user)=>{
-      if(user){
-        isLoggedIn.value = true;
-      } else{
-        isLoggedIn.value = false;
-      }
-    });
+const router = useRouter();
+const isLoggedIn = ref(false);
+onMounted(() => {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      isLoggedIn.value = true;
+    } else {
+      isLoggedIn.value = false;
+    }
   });
+});
 
-  const handleSignOut = () =>{
-    signOut(auth).then(()=>{
-      router.push("/login");
+const handleSignOut = async () => {
+  try {
+    await updateDoc(doc(db, "users", auth.currentUser.uid), {
+      isOnline: false,
     });
-  };
+    await signOut(auth);
+    router.push("/login");
+  } catch (error) {
+    console.log(error);
+  }
+};
 </script>
 
 <style scoped>
