@@ -1,19 +1,18 @@
 <template>
+
+<div>
+  <h1 class="header"> SoChat </h1>
+</div>
+
 <div class="login-block">
-   <h1>Login</h1>
     <p><input type="text" placeholder="Email" v-model="email"/></p>
     <p><input type="password" placeholder="Password" v-model="password"/></p>
     <p v-if="errorMessage">{{ errorMessage }}</p>
-    <p><button @click="login">Login</button></p>
-    
-    
-  
-
-
+    <p><button type="submit" @click="login">Log in</button></p>
+    <p class=" text"> Do not have an account? </p>
+    <h5 @click="router.push('/signup')"> Sign Up </h5>
 </div>
-<div class="signup-btn">
-    <button @click="router.push('/signup')">Sign Up</button>
-</div>
+
 
 
    
@@ -66,18 +65,18 @@ const login = () => {
   font-size: 52px;
 }
 
-body {
-  background: url("http://i.imgur.com/Eor57Ae.jpg") no-repeat fixed center
-    center;
-  background-size: cover;
-  font-family: Montserrat;
+.header{
+  
+  font-family: Tahoma;
+  font-size: 40px;
+  font-weight:bolder;
+  margin-top: 30px;
+  color: #ff656c;
 }
 
-.logo {
-  width: 213px;
-  height: 36px;
-  background: url("http://i.imgur.com/fd8Lcso.png") no-repeat;
-  margin: 30px auto;
+body {
+  background-size: cover;
+  font-family: Montserrat;
 }
 
 .login-block {
@@ -87,28 +86,8 @@ body {
   border-radius: 5px;
   border-top: 5px solid #ff656c;
   margin: 0 auto;
-  position: fixed;
-  bottom: 50%;
-  left: 40%;
-}
-.signup-btn {
-  cursor: pointer; 
-  width: 320px;
-  position: fixed;
-  height: 40px;
-  background: #ffffff;
-  box-sizing: border-box;
-  border-radius: 5px;
-  border: 1px solid #e15960;
-  color: rgb(255, 52, 52);
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 14px;
-  font-family: Montserrat;
-  bottom: 45%;
-  left: 40%;
-  text-align: center;
-
+  position: relative;
+  margin-top: 50px;
 }
 
 .login-block h1 {
@@ -118,6 +97,21 @@ body {
   text-transform: uppercase;
   margin-top: 0;
   margin-bottom: 20px;
+}
+
+.login-block h5{
+  
+  color: #ff656c;
+  padding-top: 2%;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align: center;
+  font-weight: bolder;
+  cursor: pointer;  
+}
+.login-block  .text{
+  padding-top: 3%;
+  color: #000000;
+  
 }
 
 .login-block input {
