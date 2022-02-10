@@ -1,14 +1,18 @@
 <template>
-  <div class="login-block">
-    <h1>Login</h1>
-    <p><input type="text" placeholder="Email" v-model="email" /></p>
-    <p><input type="text" placeholder="Password" v-model="password" /></p>
+
+<div>
+  <h1 class="header"> SoChat </h1>
+</div>
+
+<div class="login-block">
+    <p><input type="text" placeholder="Email" v-model="email"/></p>
+    <p><input type="password" placeholder="Password" v-model="password"/></p>
     <p v-if="errorMessage">{{ errorMessage }}</p>
-    <p><button @click="login">Login</button></p>
-  </div>
-  <div class="signup-btn">
-    <button @click="router.push('/signup')">Sign Up</button>
-  </div>
+    <p><button type="submit" @click="login">Log in</button></p>
+    <p class=" text"> Do not have an account? </p>
+    <h5 @click="router.push('/signup')"> Sign Up </h5>
+</div>
+
 </template>
 
 <script setup>
@@ -70,16 +74,18 @@ const login = async () => {
   font-size: 52px;
 }
 
+.header{
+  
+  font-family: Tahoma;
+  font-size: 40px;
+  font-weight:bolder;
+  margin-top: 30px;
+  color: #ff656c;
+}
+
 body {
   background-size: cover;
   font-family: Montserrat;
-}
-
-.logo {
-  width: 213px;
-  height: 36px;
-  background: url("http://i.imgur.com/fd8Lcso.png") no-repeat;
-  margin: 30px auto;
 }
 
 .login-block {
@@ -121,6 +127,21 @@ body {
 .login-block .text {
   padding-top: 3%;
   color: #000000;
+}
+
+.login-block h5{
+  
+  color: #ff656c;
+  padding-top: 2%;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align: center;
+  font-weight: bolder;
+  cursor: pointer;  
+}
+.login-block  .text{
+  padding-top: 3%;
+  color: #000000;
+  
 }
 
 .login-block input {

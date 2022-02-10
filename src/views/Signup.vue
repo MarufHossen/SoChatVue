@@ -1,10 +1,13 @@
 <template>
-  <div class="login-block">
+<div>
+  <h1 class="header"> SoChat </h1>
+</div>
+<div class="login-block">
     <h1>Create An Account</h1>
-    <p><input type="text" placeholder="First Name" v-model="firstname" /></p>
-    <p><input type="text" placeholder="Last Name" v-model="lastname" /></p>
-    <p><input type="text" placeholder="Emain" v-model="email" /></p>
-    <p><input type="text" placeholder="Password" v-model="password" /></p>
+    <p><input type="text" placeholder="First Name" v-model="firstname"/></p>
+    <p><input type="text" placeholder="Last Name" v-model="lastname"/></p>
+    <p><input type="text" placeholder="Email" v-model="email"/></p>
+    <p><input type="text" placeholder="Password" v-model="password"/></p>
     <p><button @click="signup">Submit</button></p>
   </div>
 </template>
@@ -50,6 +53,7 @@ const signup = () => {
 </script>
 
 <style scoped>
+
 .header {
   font-family: Tahoma;
   font-size: 40px;
@@ -67,13 +71,6 @@ const signup = () => {
 body {
   background-size: cover;
   font-family: Montserrat;
-}
-
-.logo {
-  width: 213px;
-  height: 36px;
-  background: url("http://i.imgur.com/fd8Lcso.png") no-repeat;
-  margin: 30px auto;
 }
 
 .login-block {
