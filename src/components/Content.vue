@@ -12,7 +12,7 @@
               </div>
 
               <div class="flex-1 flex h-full">
-                <div class="sidebar hidden lg:flex w-1/3 flex-2 flex-col pr-6">
+                <!-- <div class="sidebar hidden lg:flex w-1/3 flex-2 flex-col pr-6">
                   <div class="search flex-2 pb-6 px-2">
                     <input
                       type="text"
@@ -27,8 +27,10 @@
                       placeholder="Search"
                     />
                   </div>
-                  <div class="flex-1 h-full overflow-auto px-2">
+                  <div class="flex-1 h-full overflow-auto px-2 hidden">
                     <div
+                      v-for="user in users"
+                      :key="user.id"
                       class="
                         entry
                         cursor-pointer
@@ -67,7 +69,7 @@
                       </div>
                       <div class="flex-1 px-2">
                         <div class="truncate w-32">
-                          <span class="text-gray-800">Ryann Remo</span>
+                          <span class="text-gray-800">{{ user?.message }}</span>
                         </div>
                         <div>
                           <small class="text-gray-600">Yea, Sure!</small>
@@ -94,232 +96,34 @@
                         </div>
                       </div>
                     </div>
-                    <div
-                      class="
-                        entry
-                        cursor-pointer
-                        transform
-                        hover:scale-105
-                        duration-300
-                        transition-transform
-                        bg-white
-                        mb-4
-                        rounded
-                        p-4
-                        flex
-                        shadow-md
-                      "
-                    >
-                      <div class="flex-2">
-                        <div class="w-12 h-12 relative">
-                          <img
-                            class="w-12 h-12 rounded-full mx-auto"
-                            src="../assets/profile-image.png"
-                            alt="chat-user"
-                          />
-                          <span
-                            class="
-                              absolute
-                              w-4
-                              h-4
-                              bg-gray-400
-                              rounded-full
-                              right-0
-                              bottom-0
-                              border-2 border-white
-                            "
-                          ></span>
-                        </div>
-                      </div>
-                      <div class="flex-1 px-2">
-                        <div class="truncate w-32">
-                          <span class="text-gray-800">Karp Bonolo</span>
-                        </div>
-                        <div>
-                          <small class="text-gray-600">Yea, Sure!</small>
-                        </div>
-                      </div>
-                      <div class="flex-2 text-right">
-                        <div><small class="text-gray-500">15 April</small></div>
-                        <div>
-                          <small
-                            class="
-                              text-xs
-                              bg-red-500
-                              text-white
-                              rounded-full
-                              h-6
-                              w-6
-                              leading-6
-                              text-center
-                              inline-block
-                            "
-                          >
-                            10
-                          </small>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="
-                        entry
-                        cursor-pointer
-                        transform
-                        hover:scale-105
-                        duration-300
-                        transition-transform
-                        bg-white
-                        mb-4
-                        rounded
-                        p-4
-                        flex
-                        shadow-md
-                        border-l-4 border-red-500
-                      "
-                    >
-                      <div class="flex-2">
-                        <div class="w-12 h-12 relative">
-                          <img
-                            class="w-12 h-12 rounded-full mx-auto"
-                            src="../assets/profile-image.png"
-                            alt="chat-user"
-                          />
-                          <span
-                            class="
-                              absolute
-                              w-4
-                              h-4
-                              bg-gray-400
-                              rounded-full
-                              right-0
-                              bottom-0
-                              border-2 border-white
-                            "
-                          ></span>
-                        </div>
-                      </div>
-                      <div class="flex-1 px-2">
-                        <div class="truncate w-32">
-                          <span class="text-gray-800">Mercedes Yemelyan</span>
-                        </div>
-                        <div>
-                          <small class="text-gray-600">Yea, Sure!</small>
-                        </div>
-                      </div>
-                      <div class="flex-2 text-right">
-                        <div><small class="text-gray-500">15 April</small></div>
-                      </div>
-                    </div>
-                    <div
-                      class="
-                        entry
-                        cursor-pointer
-                        transform
-                        hover:scale-105
-                        duration-300
-                        transition-transform
-                        bg-white
-                        mb-4
-                        rounded
-                        p-4
-                        flex
-                        shadow-md
-                      "
-                    >
-                      <div class="flex-2">
-                        <div class="w-12 h-12 relative">
-                          <img
-                            class="w-12 h-12 rounded-full mx-auto"
-                            src="../assets/profile-image.png"
-                            alt="chat-user"
-                          />
-                          <span
-                            class="
-                              absolute
-                              w-4
-                              h-4
-                              bg-gray-400
-                              rounded-full
-                              right-0
-                              bottom-0
-                              border-2 border-white
-                            "
-                          ></span>
-                        </div>
-                      </div>
-                      <div class="flex-1 px-2">
-                        <div class="truncate w-32">
-                          <span class="text-gray-800">Cadi Kajetán</span>
-                        </div>
-                        <div>
-                          <small class="text-gray-600">Yea, Sure!</small>
-                        </div>
-                      </div>
-                      <div class="flex-2 text-right">
-                        <div><small class="text-gray-500">15 April</small></div>
-                      </div>
-                    </div>
-                    <div
-                      class="
-                        entry
-                        cursor-pointer
-                        transform
-                        hover:scale-105
-                        duration-300
-                        transition-transform
-                        bg-white
-                        mb-4
-                        rounded
-                        p-4
-                        flex
-                        shadow-md
-                      "
-                    >
-                      <div class="flex-2">
-                        <div class="w-12 h-12 relative">
-                          <img
-                            class="w-12 h-12 rounded-full mx-auto"
-                            src="../assets/profile-image.png"
-                            alt="chat-user"
-                          />
-                          <span
-                            class="
-                              absolute
-                              w-4
-                              h-4
-                              bg-gray-400
-                              rounded-full
-                              right-0
-                              bottom-0
-                              border-2 border-white
-                            "
-                          ></span>
-                        </div>
-                      </div>
-                      <div class="flex-1 px-2">
-                        <div class="truncate w-32">
-                          <span class="text-gray-800">Rina Samuel</span>
-                        </div>
-                        <div>
-                          <small class="text-gray-600">Yea, Sure!</small>
-                        </div>
-                      </div>
-                      <div class="flex-2 text-right">
-                        <div><small class="text-gray-500">15 April</small></div>
-                      </div>
-                    </div>
                   </div>
-                </div>
+                </div> -->
                 <div class="chat-area flex-1 flex flex-col">
                   <div class="flex-3">
                     <h2 class="text-xl py-1 mb-8 border-b-2 border-gray-200">
-                      Chatting with <b>Mercedes Yemelyan</b>
+                      Chatting in <b>SoChat App</b>
                     </h2>
                   </div>
                   <div class="messages flex-1 overflow-auto">
-                    <div class="message mb-4 flex">
+                    <div
+                      v-for="chat in chats"
+                      :key="chat.id"
+                      class="message mb-4 flex"
+                      v-bind:class="
+                        chat.senderId === 'wzVZdBNMrg2OeqftwtLx'
+                          ? 'text-right'
+                          : ''
+                      "
+                    >
                       <div class="flex-2">
-                        <div class="w-12 h-12 relative">
+                        <div
+                          class="w-12 h-12 relative"
+                          v-bind:class="
+                            chat.senderId === 'wzVZdBNMrg2OeqftwtLx'
+                              ? 'hidden'
+                              : ''
+                          "
+                        >
                           <img
                             class="w-12 h-12 rounded-full mx-auto"
                             src="../assets/profile-image.png"
@@ -349,135 +153,18 @@
                             px-6
                             text-gray-700
                           "
-                        >
-                          <span
-                            >Hey there. We would like to invite you over to our
-                            office for a visit. How about it?</span
-                          >
-                        </div>
-                        <div class="pl-4">
-                          <small class="text-gray-500">15 April</small>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="message mb-4 flex">
-                      <div class="flex-2">
-                        <div class="w-12 h-12 relative">
-                          <img
-                            class="w-12 h-12 rounded-full mx-auto"
-                            src="../assets/profile-image.png"
-                            alt="chat-user"
-                          />
-                          <span
-                            class="
-                              absolute
-                              w-4
-                              h-4
-                              bg-gray-400
-                              rounded-full
-                              right-0
-                              bottom-0
-                              border-2 border-white
-                            "
-                          ></span>
-                        </div>
-                      </div>
-                      <div class="flex-1 px-2">
-                        <div
-                          class="
-                            inline-block
-                            bg-gray-300
-                            rounded-full
-                            p-2
-                            px-6
-                            text-gray-700
+                          v-bind:class="
+                            chat.senderId === 'wzVZdBNMrg2OeqftwtLx'
+                              ? 'bg-blue-600 text-white'
+                              : ''
                           "
                         >
-                          <span
-                            >All travel expenses are covered by us of course
-                            :D</span
-                          >
-                        </div>
-                        <div class="pl-4">
-                          <small class="text-gray-500">15 April</small>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="message me mb-4 flex text-right">
-                      <div class="flex-1 px-2">
-                        <div
-                          class="
-                            inline-block
-                            bg-blue-600
-                            rounded-full
-                            p-2
-                            px-6
-                            text-white
-                          "
-                        >
-                          <span>It's like a dream come true</span>
+                          <span>{{ chat.msgTxt }}</span>
                         </div>
                         <div class="pr-4">
-                          <small class="text-gray-500">15 April</small>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="message me mb-4 flex text-right">
-                      <div class="flex-1 px-2">
-                        <div
-                          class="
-                            inline-block
-                            bg-blue-600
-                            rounded-full
-                            p-2
-                            px-6
-                            text-white
-                          "
-                        >
-                          <span>I accept. Thank you very much.</span>
-                        </div>
-                        <div class="pr-4">
-                          <small class="text-gray-500">15 April</small>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="message mb-4 flex">
-                      <div class="flex-2">
-                        <div class="w-12 h-12 relative">
-                          <img
-                            class="w-12 h-12 rounded-full mx-auto"
-                            src="../assets/profile-image.png"
-                            alt="chat-user"
-                          />
-                          <span
-                            class="
-                              absolute
-                              w-4
-                              h-4
-                              bg-gray-400
-                              rounded-full
-                              right-0
-                              bottom-0
-                              border-2 border-white
-                            "
-                          ></span>
-                        </div>
-                      </div>
-                      <div class="flex-1 px-2">
-                        <div
-                          class="
-                            inline-block
-                            bg-gray-300
-                            rounded-full
-                            p-2
-                            px-6
-                            text-gray-700
-                          "
-                        >
-                          <span>You are welome. We will stay in touch.</span>
-                        </div>
-                        <div class="pl-4">
-                          <small class="text-gray-500">15 April</small>
+                          <small class="text-gray-500">{{
+                            chat.senderName
+                          }}</small>
                         </div>
                       </div>
                     </div>
@@ -518,6 +205,7 @@
                       </div>
                       <div class="flex-1">
                         <textarea
+                          v-model="newMsg"
                           name="message"
                           class="
                             w-full
@@ -556,6 +244,7 @@
                         </div>
                         <div class="flex-1">
                           <button
+                            @click="saveMessages"
                             class="
                               bg-blue-400
                               w-10
@@ -605,10 +294,14 @@
 } */
 </style>
 
-<script>
-import users from "../userinfo";
+<script setup>
+//import users from "../userinfo";
 
-import { computed, ref } from "vue";
+import { onMounted, computed, ref } from "vue";
+import { auth, db } from "../main";
+import { collection, query, where, onSnapshot } from "@firebase/firestore";
+
+import { doc, setDoc } from "firebase/firestore";
 
 let messagesList = ref([
   { id: 1, message: "Hello", active: true },
@@ -616,24 +309,37 @@ let messagesList = ref([
   { id: 3, message: "Good Morning", active: false },
 ]);
 
-export default {
-  data() {
-    return {
-      activeClass: "active-user",
-      users: users,
-      messagesList: messagesList,
-    };
-  },
-  methods: {
-    addNewMsg() {
-      if (this.newMsgText) {
-        this.messagesList.push({
-          message: this.newMsgText,
-          active: false,
-        });
-        this.newMsgText = "";
-      }
-    },
-  },
+const newMsg = ref("");
+const users = ref([]);
+const chats = ref([]);
+const saveMessages = async () => {
+  const data = {
+    msgTxt: newMsg.value,
+    senderId: "wzVZdBNMrg2OeqftwtLx",
+    senderName: "Ahmed",
+  };
+
+  console.log(data);
+  newMsg.value = "";
+  await setDoc(doc(collection(db, "publicchat")), data);
 };
+
+onMounted(() => {
+  const userRef = collection(db, "publicchat");
+  const q = query(userRef);
+
+  console.log(q);
+  const unsub = onSnapshot(q, (querySnapshot) => {
+    chats.value = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    // .reverse();
+    users.value = chats.value;
+    //console.log(this.users);
+    console.log(chats.value);
+    console.log("public chat is working");
+  });
+  //return () => unsub();
+});
 </script>
