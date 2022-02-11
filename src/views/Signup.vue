@@ -1,21 +1,20 @@
 <template>
-<div>
-  <h1 class="header"> SoChat </h1>
-</div>
-<div class="login-block">
+  <div>
+    <h1 class="header">SoChat</h1>
+  </div>
+  <div class="login-block">
     <h1>Create An Account</h1>
-    <p><input type="text" placeholder="First Name" v-model="firstname"/></p>
-    <p><input type="text" placeholder="Last Name" v-model="lastname"/></p>
-    <p><input type="text" placeholder="Email" v-model="email"/></p>
-    <p><input type="text" placeholder="Password" v-model="password"/></p>
+    <p><input type="text" placeholder="First Name" v-model="firstname" /></p>
+    <p><input type="text" placeholder="Last Name" v-model="lastname" /></p>
+    <p><input type="text" placeholder="Email" v-model="email" /></p>
+    <p><input type="text" placeholder="Password" v-model="password" /></p>
     <p><button @click="signup">Submit</button></p>
-</div>
-    
+  </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "vue-router";
 const firstname = ref("");
 const lastname = ref("");
@@ -24,24 +23,29 @@ const password = ref("");
 const router = useRouter();
 
 const signup = () => {
-    createUserWithEmailAndPassword(getAuth(), email.value, password.value, firstname.value, lastname.value)
-    .then((data)=> {
-        console.log("Registration successful");
-        router.push('/')
+  createUserWithEmailAndPassword(
+    getAuth(),
+    email.value,
+    password.value,
+    firstname.value,
+    lastname.value
+  )
+    .then((data) => {
+      console.log("Registration successful");
+      router.push("/login");
     })
     .catch((error) => {
-        console.log(error.code);
-        alert("Please provide valid inputs.");
+      console.log(error.code);
+      alert("Please provide valid inputs.");
     });
 };
-
 </script>
 
 <style scoped>
-.header{
+.header {
   font-family: Tahoma;
   font-size: 40px;
-  font-weight:bolder;
+  font-weight: bolder;
   margin-top: 30px;
   color: #ff656c;
 }

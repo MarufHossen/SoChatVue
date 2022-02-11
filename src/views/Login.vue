@@ -1,61 +1,57 @@
 <template>
+  <div>
+    <h1 class="header">SoChat</h1>
+  </div>
 
-<div>
-  <h1 class="header"> SoChat </h1>
-</div>
-
-<div class="login-block">
-    <p><input type="text" placeholder="Email" v-model="email"/></p>
-    <p><input type="password" placeholder="Password" v-model="password"/></p>
+  <div class="login-block">
+    <p><input type="text" placeholder="Email" v-model="email" /></p>
+    <p><input type="password" placeholder="Password" v-model="password" /></p>
     <p v-if="errorMessage">{{ errorMessage }}</p>
     <p><button type="submit" @click="login">Log in</button></p>
-    <p class=" text"> Do not have an account? </p>
-    <h5 @click="router.push('/signup')"> Sign Up </h5>
-</div>
-
-
-
-   
+    <p class="text">Do not have an account?</p>
+    <h5 @click="router.push('/signup')">Sign Up</h5>
+  </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "vue-router";
+
 const email = ref("");
 const password = ref("");
 const errorMessage = ref();
 const router = useRouter();
 
 const login = () => {
-    const auth = getAuth();
-    signInWithEmailAndPassword(auth, email.value, password.value)
-    .then((data)=> {
-        console.log("Successfully signed in");
-        console.log(auth.currentUser);
-        router.push('/')
+  const auth = getAuth();
+  signInWithEmailAndPassword(auth, email.value, password.value)
+    .then((data) => {
+      console.log("Successfully signed in");
+      console.log(data.user);
+      localStorage.setItem("name", data.user.email.split("@")[0]);
+      localStorage.setItem("uid", data.user.uid);
+      router.push("/");
     })
     .catch((error) => {
-        console.log(error.code);
-        switch(error.code){
-            case "auth/invalid-email":
-                errorMessage.value = "Invalid email";
-                break;
-            case "auth/user-not-found":
-                errorMessage.value = "No account with this email has been found";
-                break;
-            case "auth/invalid-password":
-                errorMessage.value = "Incorrect password";
-                break;
-            default: 
-                errorMessage.value = "Email or password was incorrect";
-                break;
-        }
+      console.log(error.code);
+      switch (error.code) {
+        case "auth/invalid-email":
+          errorMessage.value = "Invalid email";
+          break;
+        case "auth/user-not-found":
+          errorMessage.value = "No account with this email has been found";
+          break;
+        case "auth/invalid-password":
+          errorMessage.value = "Incorrect password";
+          break;
+        default:
+          errorMessage.value = "Email or password was incorrect";
+          break;
+      }
     });
 };
-
 </script>
-
 
 <style scoped>
 .name {
@@ -65,11 +61,10 @@ const login = () => {
   font-size: 52px;
 }
 
-.header{
-  
+.header {
   font-family: Tahoma;
   font-size: 40px;
-  font-weight:bolder;
+  font-weight: bolder;
   margin-top: 30px;
   color: #ff656c;
 }
@@ -99,19 +94,17 @@ body {
   margin-bottom: 20px;
 }
 
-.login-block h5{
-  
+.login-block h5 {
   color: #ff656c;
   padding-top: 2%;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   text-align: center;
   font-weight: bolder;
-  cursor: pointer;  
+  cursor: pointer;
 }
-.login-block  .text{
+.login-block .text {
   padding-top: 3%;
   color: #000000;
-  
 }
 
 .login-block input {
@@ -167,9 +160,6 @@ body {
   outline: none;
   cursor: pointer;
 }
-
-
-
 
 .login-block button:hover {
   background: #ff7b81;

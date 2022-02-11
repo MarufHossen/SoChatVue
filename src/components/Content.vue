@@ -11,18 +11,16 @@
             v-for="chat in chats"
             :key="chat.id"
             class="msg"
-            v-bind:class="
-              chat.senderId === 'wzVZdBNMrg2OeqftwtLx'
-                ? 'right-msg'
-                : 'left-msg'
-            "
+            v-bind:class="chat.senderId === userId ? 'right-msg' : 'left-msg'"
           >
             <div class="msg-bubble">
               <div class="msg-info">
                 <div class="msg-info-name">
-                  {{ chat.senderName ? chat.senderName : "Maruf" }}
+                  {{ chat.senderName ? chat.senderName : "Unknown" }}
                 </div>
-                <div class="msg-info-time">12:45</div>
+                <div class="msg-info-time">
+                  {{ chat.createdAt ? getTime(chat.createdAt) : "11:30" }}
+                </div>
               </div>
 
               <div class="msg-text">
@@ -187,6 +185,7 @@ import {
   where,
   onSnapshot,
   serverTimestamp,
+  orderBy,
 } from "@firebase/firestore";
 
 import { doc, setDoc } from "firebase/firestore";
@@ -194,12 +193,18 @@ import { doc, setDoc } from "firebase/firestore";
 const newMsg = ref("");
 const users = ref([]);
 const chats = ref([]);
+
+const userId = ref(localStorage.getItem("uid"));
+const username = ref(localStorage.getItem("name"));
+const getTime = (timestampt) => {
+  return new Date().toLocaleDateString(timestampt);
+};
 const saveMessages = async (e) => {
   e.preventDefault();
   const data = {
     msgTxt: newMsg.value,
-    senderId: "wzVZdBNMrg2OeqftwtLx",
-    senderName: "Ahmed",
+    senderId: localStorage.getItem("uid"),
+    senderName: localStorage.getItem("name"),
     createdAt: serverTimestamp(),
   };
 
@@ -210,9 +215,8 @@ const saveMessages = async (e) => {
 
 onMounted(() => {
   const userRef = collection(db, "publicchat");
-  const q = query(userRef);
+  const q = query(userRef, orderBy("createdAt", "asc"));
 
-  console.log(q);
   const unsub = onSnapshot(q, (querySnapshot) => {
     chats.value = querySnapshot.docs.map((doc) => ({
       id: doc.id,
