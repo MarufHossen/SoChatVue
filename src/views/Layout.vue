@@ -17,7 +17,7 @@ const count = ref(0);
     <Header />
     <Sidebar />
     <Content />
-    <Footer />
+    <!-- <Footer /> -->
   </div>
 </template>
 
@@ -29,7 +29,9 @@ const count = ref(0);
   grid-template-rows: 55px auto 50px;
   grid-template-areas:
     "sidebar sidebar header header header header header header header header header header"
-    "sidebar sidebar main_content main_content main_content main_content main_content main_content main_content main_content main_content main_content"
-    "sidebar sidebar footer footer footer footer footer footer footer footer footer footer";
+    "sidebar sidebar main_content main_content main_content main_content main_content main_content main_content main_content main_content main_content";
 }
 </style>
+
+// "sidebar sidebar footer footer footer footer footer footer footer footer
+footer footer";
