@@ -4,8 +4,6 @@
       <h2 class="text-xl py-1 mb-8 border-b-2 border-gray-200">So Chat</h2>
     </div>
     <div class="sidebar-menu">Public Chat</div>
-    <div class="sidebar-menu">Create Group</div>
-    <div class="sidebar-menu">Join Group</div>
     <div class="sidebar-menu" @click="handleSignOut" v-if="isLoggedIn">
       Signout
     </div>
@@ -33,9 +31,6 @@ onMounted(() => {
 
 const handleSignOut = async () => {
   try {
-    await updateDoc(doc(db, "users", auth.currentUser.uid), {
-      isOnline: false,
-    });
     await signOut(auth);
     router.push("/login");
   } catch (error) {
