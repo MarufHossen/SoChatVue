@@ -6,7 +6,7 @@
           <div class="msger-header-title">Public Chat</div>
         </header>
 
-        <main class="msger-chat">
+        <main class="msger-chat" id="chat">
           <div
             v-for="chat in chats"
             :key="chat.id"
@@ -224,9 +224,6 @@ onMounted(() => {
     }));
     // .reverse();
     users.value = chats.value;
-    //console.log(this.users);
-    console.log(chats.value);
-    console.log("public chat is working");
   });
   //return () => unsub();
 });
