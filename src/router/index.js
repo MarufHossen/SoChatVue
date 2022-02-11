@@ -19,9 +19,9 @@ const routes = [
   {
     path: "/",
     component: Layout,
-    // meta: {
-    //   requiresAuth: true,
-    //   },
+    meta: {
+      requiresAuth: true,
+    },
   },
 ];
 const router = createRouter({

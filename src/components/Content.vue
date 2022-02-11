@@ -6,7 +6,7 @@
           <div class="msger-header-title">Public Chat</div>
         </header>
 
-        <main class="msger-chat">
+        <main class="msger-chat" id="chat">
           <div
             v-for="chat in chats"
             :key="chat.id"
@@ -212,6 +212,9 @@ const saveMessages = async (e) => {
   newMsg.value = "";
   await setDoc(doc(collection(db, "publicchat")), data);
 };
+const scrollToBottom = () => {
+  window.scrollTo(0, document.getElementById("chat").scrollHeight);
+};
 
 onMounted(() => {
   const userRef = collection(db, "publicchat");
@@ -224,10 +227,8 @@ onMounted(() => {
     }));
     // .reverse();
     users.value = chats.value;
-    //console.log(this.users);
-    console.log(chats.value);
-    console.log("public chat is working");
   });
+  scrollToBottom();
   //return () => unsub();
 });
 </script>
