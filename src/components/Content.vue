@@ -212,9 +212,6 @@ const saveMessages = async (e) => {
   newMsg.value = "";
   await setDoc(doc(collection(db, "publicchat")), data);
 };
-const scrollToBottom = () => {
-  window.scrollTo(0, document.getElementById("chat").scrollHeight);
-};
 
 onMounted(() => {
   const userRef = collection(db, "publicchat");
@@ -228,7 +225,6 @@ onMounted(() => {
     // .reverse();
     users.value = chats.value;
   });
-  scrollToBottom();
   //return () => unsub();
 });
 </script>
